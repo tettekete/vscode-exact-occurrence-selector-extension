@@ -27,6 +27,17 @@ export class VSCConfig
 		return await VSCConfig._toggleConfig( 'exactOccurrenceSelector.caseSensitive' );
 	}
 
+	static async setCaseSensitive( value: boolean ): Promise<boolean>
+	{
+		await vscode.workspace.getConfiguration().update(
+			'exactOccurrenceSelector.caseSensitive',
+			value,
+			vscode.ConfigurationTarget.Global
+		);
+
+		return value;
+	}
+
 	// - - - - - - - - - - - - - - - - - - - -
 	// boundaryHandling<string>
 	// - - - - - - - - - - - - - - - - - - - -
@@ -42,6 +53,17 @@ export class VSCConfig
 		}
 
 		return config;
+	}
+
+	static async setBoundaryHandling( value: 'auto' | 'always' | 'never' ): Promise<string>
+	{
+		await vscode.workspace.getConfiguration().update(
+			'exactOccurrenceSelector.boundaryHandling',
+			value,
+			vscode.ConfigurationTarget.Global
+		);
+
+		return value;
 	}
 
 

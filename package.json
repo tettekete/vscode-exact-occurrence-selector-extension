@@ -45,6 +45,16 @@
         "command": "exact-occurrence-selector.selectAllOccurrences",
         "title": "Select all occurrences",
         "category": "ExactOccurrenceSelector"
+      },
+      {
+        "command": "exact-occurrence-selector.changeBoundaryHandlingConfig",
+        "title": "Change boundary handling config",
+        "category": "ExactOccurrenceSelector"
+      },
+      {
+        "command": "exact-occurrence-selector.changeCaseSensitiveConfig",
+        "title": "Change case sensitivity config",
+        "category": "ExactOccurrenceSelector"
       }
     ]
   },
