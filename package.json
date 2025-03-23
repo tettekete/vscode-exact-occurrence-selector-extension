@@ -12,6 +12,22 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "configuration":{
+      "title": "",
+      "properties": {
+        "exactOccurrenceSelector.caseSensitive": {
+          "type": "boolean",
+          "default": true,
+          "description": "Case sensitivity"
+        },
+        "exactOccurrenceSelector.boundaryHandling": {
+          "type": "string",
+          "default": "auto",
+          "enum": ["auto", "always", "never"],
+          "markdownDescription": "Boundary handling mode.\n\n- `auto`: Detect boundaries automatically.\n\n    If the selection is surrounded by characters other than alphanumeric characters (and `_`), it is considered an **independent word**.\n\n- `always`: The selection is always considered an **independent word**.\n\n- `never`: Word boundaries are not handled."
+        }
+      }
+    },
     "commands": [
       {
         "command": "exact-occurrence-selector.helloWorld",
