@@ -7,6 +7,12 @@ import {
 
 import { VSCConfig } from "./lib/vsc-config";
 
+type SearchTextRecord =
+{
+	offsetIndex: number,
+	text: string
+};
+
 export function addNextOccurrence()
 {
 	const editor = vscode.window.activeTextEditor;
@@ -75,20 +81,25 @@ export function selectAllOccurrences()
 
 function findNextOccurrence( editor: vscode.TextEditor ):vscode.Selection | undefined
 {	
-	const searchText = getSearchTextFromEditor( editor ,1 );
+	const searchTextRecords = getSearchTextsFromEditor( editor ,1 );
 	const regex = getRegexFromEditor( editor );
 
-	const matches = regex.exec( searchText.text );
-	if( matches !== null )
+	for(const searchTextRecord of searchTextRecords )
 	{
-		const startPos = editor.document.positionAt( searchText.offsetIndex + matches.index );
-		const endPos = editor.document.positionAt( searchText.offsetIndex + matches.index + matches[0].length );
+		const matches = regex.exec( searchTextRecord.text );
+		if( matches !== null )
+		{
+			const startPos = editor.document.positionAt( searchTextRecord.offsetIndex + matches.index );
+			const endPos = editor.document.positionAt( searchTextRecord.offsetIndex + matches.index + matches[0].length );
 
-		return new vscode.Selection( startPos ,endPos );
-	}
-	else
-	{
-		console.debug( 'No matches found' );
+			const newSelection = new vscode.Selection( startPos ,endPos );
+			if( editor.selections.some( ( s:vscode.Selection ) => s.isEqual( newSelection ) ) )
+			{
+				continue;
+			}
+
+			return newSelection;
+		}
 	}
 
 	return undefined;
@@ -97,54 +108,77 @@ function findNextOccurrence( editor: vscode.TextEditor ):vscode.Selection | unde
 
 function findPreviousOccurrence( editor: vscode.TextEditor ):vscode.Selection | undefined
 {
-	const searchText = getSearchTextFromEditor( editor ,-1 );
+	const searchTextRecords = getSearchTextsFromEditor( editor ,-1 );
 	const regex = getRegexFromEditor( editor ,'g' );
 
-	let lastMatch:RegExpExecArray | undefined;
-	let match:RegExpExecArray | null;
-	while( ( match = regex.exec( searchText.text ) ) !== null )
+	for( const searchTextRecord of searchTextRecords )
 	{
-		lastMatch = match;
+		const searchText = searchTextRecord.text;
+		let lastMatch:RegExpExecArray | undefined;
+		let match:RegExpExecArray | null;
+		while( ( match = regex.exec( searchText ) ) !== null )
+		{
+			lastMatch = match;
+		}
+
+		if( lastMatch !== undefined )
+		{
+			const startPos = editor.document.positionAt( searchTextRecord.offsetIndex + lastMatch.index );
+			const endPos = editor.document.positionAt( searchTextRecord.offsetIndex + lastMatch.index + lastMatch[0].length );
+
+			const newSelection = new vscode.Selection( startPos ,endPos );
+			if( editor.selections.some( ( s:vscode.Selection ) => s.isEqual( newSelection ) ) )
+			{
+				continue;
+			}
+
+			return newSelection;
+		}
 	}
 
-	if( lastMatch !== undefined )
-	{
-		const startPos = editor.document.positionAt( searchText.offsetIndex + lastMatch.index );
-		const endPos = editor.document.positionAt( searchText.offsetIndex + lastMatch.index + lastMatch[0].length );
-
-		return new vscode.Selection( startPos ,endPos );
-	}
-	
-	
+	return undefined;
 }
 
-function getSearchTextFromEditor( editor: vscode.TextEditor ,direction: 1 | -1 ):
+
+function getSearchTextsFromEditor( editor: vscode.TextEditor ,direction: 1 | -1 ):SearchTextRecord[]
 {
-	offsetIndex: number,
-	text: string
-}
-{
-	if( direction === 1 )
+	const result:SearchTextRecord[] = [];
+	
+	const settings =[
+		{
+			// after last selection
+			selection: editor.selections[editor.selections.length - 1],
+			sliceStart: editor.document.offsetAt( editor.selections[editor.selections.length - 1].end ),
+			sliceEnd: undefined
+		},
+		{
+			// before first selection
+			selection: editor.selections[0],
+			sliceStart: 0,
+			sliceEnd: editor.document.offsetAt( editor.selections[0].start )
+		}
+	];
+	
+	let sortedSettings = settings;
+	if( direction === -1 )
 	{
-		const lastSelection	= editor.selections[editor.selections.length - 1];
-		const offsetIndex	= editor.document.offsetAt( lastSelection.end );
-		return {
-			text: editor.document.getText().slice( offsetIndex ),
-			offsetIndex
-		};
+		sortedSettings = sortedSettings.reverse();
 	}
-	else
-	{
-		const firstSelection	= editor.selections[0];
-		const offsetIndex		= 0;
-		const endIndex			= editor.document.offsetAt( firstSelection.start );
 
-		return {
-			text: editor.document.getText().slice( offsetIndex ,endIndex ),
-			offsetIndex
-		};
+	for( const setting of sortedSettings )
+	{
+		const offsetIndex	= setting.sliceStart;
+		result.push(
+			{
+				text: editor.document.getText().slice( setting.sliceStart, setting.sliceEnd ),
+				offsetIndex: setting.sliceStart
+			}
+		);
 	}
+
+	return result;
 }
+
 
 function getRegexFromEditor( editor: vscode.TextEditor ,options:string = ''):RegExp
 {
