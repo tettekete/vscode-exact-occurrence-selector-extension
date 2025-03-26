@@ -1,0 +1,9 @@
+{
+	"commands.addNextOccurrence": "次の出現箇所を追加",
+	"commands.addPreviousOccurrence": "前の出現箇所を追加",
+	"commands.selectAllOccurrences": "すべての出現箇所を選択",
+	"commands.changeBoundaryHandlingConfig": "ワード境界の設定を変更する",
+	"commands.changeCaseSensitiveConfig": "大文字小文字の区別設定を変更する",
+	"config.boundaryHandling.description": "ワード境界の自動判定\n\n- `auto`: ワード境界を自動判定する。\n\n    非英数字に囲われたテキストを選択した場合、そのテキストを独立したワードとして扱う。\n\n- `always`: 常に独立したワードとして扱う。\n\n- `never`: ワード境界を無視する。",
+	"config.caseSensitive.description": "大文字小文字の区別"
+}

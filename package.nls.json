@@ -1,0 +1,9 @@
+{
+	"commands.addNextOccurrence": "Add next occurrence",
+	"commands.addPreviousOccurrence": "Add previous occurrence",
+	"commands.selectAllOccurrences": "Select all occurrences",
+	"commands.changeBoundaryHandlingConfig": "Change boundary handling config",
+	"commands.changeCaseSensitiveConfig": "Change case sensitivity config",
+	"config.boundaryHandling.description": "Boundary handling mode.\n\n- `auto`: Detect boundaries automatically.\n\n    When the selected text is surrounded by non-alphanumeric characters, it is automatically treated as an **standalone word**.\n\n- `always`: The selected text is always treated as an **standalone word**.\n\n- `never`: Word boundaries are not handled.",
+	"config.caseSensitive.description": "Case sensitivity"
+}

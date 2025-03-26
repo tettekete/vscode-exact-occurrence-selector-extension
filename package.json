@@ -20,40 +20,40 @@
         "exactOccurrenceSelector.caseSensitive": {
           "type": "boolean",
           "default": true,
-          "description": "Case sensitivity"
+          "description": "%config.caseSensitive.description%"
         },
         "exactOccurrenceSelector.boundaryHandling": {
           "type": "string",
           "default": "auto",
           "enum": ["auto", "always", "never"],
-          "markdownDescription": "Boundary handling mode.\n\n- `auto`: Detect boundaries automatically.\n\n    If the selection is surrounded by characters other than alphanumeric characters (and `_`), it is considered an **independent word**.\n\n- `always`: The selection is always considered an **independent word**.\n\n- `never`: Word boundaries are not handled."
+          "markdownDescription": "%config.boundaryHandling.description%"
         }
       }
     },
     "commands": [
       {
         "command": "exact-occurrence-selector.addNextOccurrence",
-        "title": "Add next occurrence",
+        "title": "%commands.addNextOccurrence%",
         "category": "ExactOccurrenceSelector"
       },
       {
         "command": "exact-occurrence-selector.addPreviousOccurrence",
-        "title": "Add previous occurrence",
+        "title": "%commands.addPreviousOccurrence%",
         "category": "ExactOccurrenceSelector"
       },
       {
         "command": "exact-occurrence-selector.selectAllOccurrences",
-        "title": "Select all occurrences",
+        "title": "%commands.selectAllOccurrences%",
         "category": "ExactOccurrenceSelector"
       },
       {
         "command": "exact-occurrence-selector.changeBoundaryHandlingConfig",
-        "title": "Change boundary handling config",
+        "title": "%commands.changeBoundaryHandlingConfig%",
         "category": "ExactOccurrenceSelector"
       },
       {
         "command": "exact-occurrence-selector.changeCaseSensitiveConfig",
-        "title": "Change case sensitivity config",
+        "title": "%commands.changeCaseSensitiveConfig%",
         "category": "ExactOccurrenceSelector"
       }
     ]
