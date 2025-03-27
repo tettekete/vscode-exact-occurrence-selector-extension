@@ -1,4 +1,6 @@
 
+<p align="center">English / <a href="https://tettekete.github.io/vscode-exact-occurrence-selector-extension/README.ja.html">日本語</a></p>
+
 **Table of Contents**
 
 - [Exact Occurrence Selector](#exact-occurrence-selector)

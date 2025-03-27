@@ -1,4 +1,6 @@
 
+<p align="center"><a href="https://tettekete.github.io/vscode-exact-occurrence-selector-extension/">English</a> / 日本語</p>
+
 **目次**
 
 - [Exact Occurrence Selector](#exact-occurrence-selector)
