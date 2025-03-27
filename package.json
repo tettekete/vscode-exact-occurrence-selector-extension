@@ -9,6 +9,15 @@
   "categories": [
     "Other"
   ],
+  "publisher": "tettekete",
+  "author": "tettekete",
+  "license": "MIT",
+  "icon": "docs/images/exact-occurrence-selector-icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tettekete/vscode-exact-occurrence-selector-extension"
+  },
+  "homepage": "https://tettekete.github.io/vscode-exact-occurrence-selector-extension/",
   "activationEvents": [
     "onStartupFinished"
   ],

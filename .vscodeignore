@@ -12,3 +12,8 @@ vsc-extension-quickstart.md
 **/*.map
 **/*.ts
 **/.vscode-test.*
+_untracked/**
+docs/**
+!docs/images/exact-occurrence-selector-icon.png
+!docs/README.ja.md
+scripts/**
