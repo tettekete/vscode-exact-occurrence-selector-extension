@@ -1,7 +1,7 @@
 {
   "name": "exact-occurrence-selector",
   "displayName": "Exact Occurrence Selector",
-  "description": "",
+  "description": "Provides `Add Next Occurrence`, `Add Previous Occurrence`, and `Select All Occurrences` functionalities, independent of the standard text search options.",
   "version": "0.1.0",
   "engines": {
     "vscode": "^1.96.0"
