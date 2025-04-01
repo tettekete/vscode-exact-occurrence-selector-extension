@@ -66,6 +66,24 @@ export class VSCConfig
 		return value;
 	}
 
+	
+	// - - - - - - - - - - - - - - - - - - - -
+	// showNumOfOccurrences<boolean>
+	// - - - - - - - - - - - - - - - - - - - -
+	static showNumOfOccurrences( fallback?: boolean ): boolean
+	{
+		const config = VSCConfig._booleanConfig(
+			'exactOccurrenceSelector.showNumOfOccurrences'
+		);
+
+		if( config === undefined )
+		{
+			return !! fallback;
+		}
+
+		return config;
+	}
+
 
 	static _stringConfig( configName: string , fallback?: string ):string | undefined
 	{

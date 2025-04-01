@@ -23,22 +23,34 @@
   ],
   "main": "./dist/extension.js",
   "contributes": {
-    "configuration":{
-      "title": "",
-      "properties": {
-        "exactOccurrenceSelector.caseSensitive": {
-          "type": "boolean",
-          "default": true,
-          "description": "%config.caseSensitive.description%"
-        },
-        "exactOccurrenceSelector.boundaryHandling": {
-          "type": "string",
-          "default": "auto",
-          "enum": ["auto", "always", "never"],
-          "markdownDescription": "%config.boundaryHandling.description%"
+    "configuration":[
+      {
+        "title": "Search Configurations",
+        "properties": {
+          "exactOccurrenceSelector.caseSensitive": {
+            "type": "boolean",
+            "default": true,
+            "description": "%config.caseSensitive.description%"
+          },
+          "exactOccurrenceSelector.boundaryHandling": {
+            "type": "string",
+            "default": "auto",
+            "enum": ["auto", "always", "never"],
+            "markdownDescription": "%config.boundaryHandling.description%"
+          }
+        }
+      },
+      {
+        "title": "Other Configurations",
+        "properties": {
+          "exactOccurrenceSelector.showNumOfOccurrences": {
+            "type": "boolean",
+            "default": true,
+            "description": "%config.showNumOfOccurrences.description%"
+          }
         }
       }
-    },
+    ],
     "commands": [
       {
         "command": "exact-occurrence-selector.addNextOccurrence",
