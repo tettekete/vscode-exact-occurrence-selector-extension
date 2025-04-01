@@ -6,6 +6,7 @@ import {
 } from "./lib/utils";
 
 import { VSCConfig } from "./lib/vsc-config";
+import { showNumOfOccurrences } from "./lib/show-num-of-occurrences";
 
 type SearchTextRecord =
 {
@@ -30,6 +31,8 @@ export function addNextOccurrence()
 	
 	editor.selections = [ ...editor.selections ,selection ];
 	editor.revealRange( selection );
+
+	showNumOfOccurrences( editor );
 }
 
 
@@ -49,6 +52,8 @@ export function addPreviousOccurrence()
 	
 	editor.selections = [ selection ,...editor.selections ];
 	editor.revealRange( selection );
+
+	showNumOfOccurrences( editor );
 }
 
 
@@ -76,6 +81,8 @@ export function selectAllOccurrences()
 
 		editor.selections = [ ...editor.selections ,selection ];
 	}
+
+	showNumOfOccurrences( editor );
 }
 
 

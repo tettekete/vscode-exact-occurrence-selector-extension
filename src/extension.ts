@@ -6,6 +6,7 @@ import {
 	selectAllOccurrences
 } from './exact-occurrence-handler';
 import { VSCConfig } from './lib/vsc-config';
+import { disposeWhenSelectionUnmatched } from './lib/show-num-of-occurrences';
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -32,6 +33,13 @@ export function activate(context: vscode.ExtensionContext) {
 	const RunChangeCaseSensitiveConfig = vscode.commands.registerCommand(
 		'exact-occurrence-selector.changeCaseSensitiveConfig',
 		changeCaseSensitiveConfig
+	);
+
+	const onDidChangeTextEditorSelection = vscode.window.onDidChangeTextEditorSelection(
+		( event: vscode.TextEditorSelectionChangeEvent ) =>
+		{
+			disposeWhenSelectionUnmatched( event.textEditor );
+		}
 	);
 
 	context.subscriptions.push(
