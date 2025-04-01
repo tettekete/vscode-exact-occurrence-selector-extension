@@ -16,8 +16,11 @@
 	- [`ExactOccurrenceSelector: Change boundary handling config`](#exactoccurrenceselector-change-boundary-handling-config)
 	- [`ExactOccurrenceSelector: Change case sensitivity config`](#exactoccurrenceselector-change-case-sensitivity-config)
 - [List of Config Items](#list-of-config-items)
-	- [Case Sensitive](#case-sensitive)
-	- [Boundary Handling](#boundary-handling)
+	- [Search Configurations](#search-configurations)
+		- [Case Sensitive](#case-sensitive)
+		- [Boundary Handling](#boundary-handling)
+	- [Other Configurations](#other-configurations)
+		- [Show Num Of Occurrences](#show-num-of-occurrences)
 - [Bug Reports and Feature Requests](#bug-reports-and-feature-requests)
 
 
@@ -25,7 +28,7 @@
 
 ## Overview
 
-This extension provides functionality equivalent to the commands found in the VSCode Selection menu, while maintaining independent search options such as Case Sensitive:
+This extension provides functionality equivalent to the commands found in the VSCode `Selection` menu, while maintaining independent search options such as Case Sensitive:
 
 - `Add Next Occurrence`
 - `Add Previous Occurrence`
@@ -147,14 +150,16 @@ A command to change the `Case Sensitive` config from the command palette. Quickl
 
 # List of Config Items
 
-## Case Sensitive
+## Search Configurations
+
+### Case Sensitive
 
 **Config ID**: `exactOccurrenceSelector.caseSensitive`
 
 Controls whether to differentiate between uppercase and lowercase letters. The default setting is true, meaning it differentiates.
 
 
-## Boundary Handling
+### Boundary Handling
 
 **Config ID**: `exactOccurrenceSelector.boundaryHandling`
 
@@ -163,6 +168,17 @@ Settings related to how word boundaries are handled. The default is `auto`.
 - `auto`: Treats the selected text as an standalone word if both ends are surrounded by non-alphanumeric characters, and searches for the next "Occurrence".
 - `always`: Always treats the selected text as an standalone word, regardless of surrounding characters, and searches for the next "Occurrence".
 - `never`: Ignores word boundaries.
+
+
+## Other Configurations
+
+### Show Num Of Occurrences
+
+**Cinfig ID**: `exactOccurrenceSelector.showNumOfOccurrences`
+
+A checkbox to enable or disable displaying the number of "Occurrences" selected using this extension in the status bar.
+
+The default is checked.
 
 
 

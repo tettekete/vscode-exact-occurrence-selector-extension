@@ -16,8 +16,11 @@
 	- [`ExactOccurrenceSelector: Change boundary handling config`](#exactoccurrenceselector-change-boundary-handling-config)
 	- [`ExactOccurrenceSelector: Change case sensitivity config`](#exactoccurrenceselector-change-case-sensitivity-config)
 - [コンフィグ項目一覧](#コンフィグ項目一覧)
-	- [Case Sensitive](#case-sensitive)
-	- [Boundary Handling](#boundary-handling)
+	- [Search Configurations](#search-configurations)
+		- [Case Sensitive](#case-sensitive)
+		- [Boundary Handling](#boundary-handling)
+	- [Other Configurations](#other-configurations)
+		- [Show Num Of Occurrences](#show-num-of-occurrences)
 - [バグ報告と要望について](#バグ報告と要望について)
 
 
@@ -159,13 +162,15 @@ VSCode 標準の `Select all occurrences` に相当する機能を提供しま�
 
 # コンフィグ項目一覧
 
-## Case Sensitive
+## Search Configurations
+
+### Case Sensitive
 
 **コンフィグID**: `exactOccurrenceSelector.caseSensitive`
 
 大文字小文字の区別を行うかどうかの設定です。デフォルトは true で区別します。
 
-## Boundary Handling
+### Boundary Handling
 
 **コンフィグID**: `exactOccurrenceSelector.boundaryHandling`
 
@@ -174,6 +179,17 @@ VSCode 標準の `Select all occurrences` に相当する機能を提供しま�
 - `auto`: 選択テキストの両端が非英数字である時、独立したワードと見做して次の「出現箇所」を探します。
 - `always`: 選択テキストを必ず独立したワードと見做して次の「出現箇所」を探します。
 - `never`: ワード境界を無視します。
+
+## Other Configurations
+
+### Show Num Of Occurrences
+
+**Cinfig ID**: `exactOccurrenceSelector.showNumOfOccurrences`
+
+本機能拡張により選択された "Occurrence（出現箇所）" の数をステータスバーに表示刷るかどうかのチェックボックスです。
+
+デフォルトは ON です。
+
 
 
 # バグ報告と要望について
